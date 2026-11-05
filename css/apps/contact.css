@@ -1,0 +1,339 @@
+/* ==========================================================================
+   VIGNESH.OS — CONTACT APP STYLES (.contact-*)
+   ========================================================================== */
+
+.contact-terminal-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #070d18;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   TERMINAL HEADER BAR
+   ========================================================================== */
+
+.contact-terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: var(--bg-window-alt);
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+}
+
+.contact-terminal-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-term-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.contact-term-btn--red {
+  background-color: #e05555;
+}
+
+.contact-term-btn--yellow {
+  background-color: #e5b342;
+}
+
+.contact-term-btn--green {
+  background-color: var(--accent-green);
+}
+
+.contact-terminal-title {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.contact-terminal-session {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   TERMINAL SCREEN & ASCII DISPLAY
+   ========================================================================== */
+
+.contact-terminal-screen {
+  flex: 1;
+  padding: var(--space-md);
+  overflow-y: auto;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  outline: none;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Terminal custom scrollbar */
+.contact-terminal-screen::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.contact-terminal-screen::-webkit-scrollbar-track {
+  background: #070d18;
+}
+
+.contact-terminal-screen::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.contact-terminal-screen::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-hover);
+}
+
+.contact-line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.contact-prompt {
+  color: var(--accent-green);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.contact-command {
+  color: var(--text-primary);
+}
+
+/* ASCII Box Styling */
+.contact-ascii-wrapper {
+  margin: var(--space-xs) 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.contact-ascii-box {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 1.6vw, 0.88rem);
+  line-height: 1.35;
+  color: var(--text-secondary);
+  background: transparent;
+  white-space: pre;
+}
+
+/* Links inside ASCII box */
+.contact-link {
+  color: var(--accent-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: transparent;
+  border: none;
+  padding: 0 2px;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  display: inline;
+}
+
+.contact-link:hover {
+  color: #ff916b;
+  background-color: rgba(232, 115, 74, 0.15);
+  border-radius: 2px;
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Copied feedback badge */
+.contact-copy-badge {
+  display: inline-block;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1px);
+  background-color: var(--accent-green);
+  color: var(--bg-desktop);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  margin-left: 6px;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+.contact-copy-badge--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   DYNAMIC COMMAND LOG & CURSOR
+   ========================================================================== */
+
+.contact-history-log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.contact-log-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-output {
+  margin-left: 14px;
+  font-size: 0.84rem;
+}
+
+.contact-output--success {
+  color: var(--accent-green);
+}
+
+.contact-output--info {
+  color: var(--accent-blue);
+}
+
+.contact-output--error {
+  color: #e05555;
+}
+
+.contact-active-prompt-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.contact-cursor {
+  color: var(--accent-green);
+  font-size: 0.95rem;
+  line-height: 1;
+  display: inline-block;
+  animation: contact-blink 1s steps(2, start) infinite;
+}
+
+@keyframes contact-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* ==========================================================================
+   FOOTER QUICK ACTIONS
+   ========================================================================== */
+
+.contact-terminal-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: var(--bg-window-alt);
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+}
+
+.contact-actions-label {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.contact-action-btn {
+  background-color: var(--bg-desktop);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), 
+              color var(--transition-fast), 
+              border-color var(--transition-fast);
+}
+
+.contact-action-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--accent-orange);
+  border-color: var(--accent-orange);
+}
+
+.contact-action-btn:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 1px;
+}
+
+.contact-action-btn--clear {
+  margin-left: auto;
+  color: var(--text-dim);
+}
+
+.contact-action-btn--clear:hover {
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+/* ==========================================================================
+   RESPONSIVE STYLES
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .contact-terminal-header {
+    padding: 6px 10px;
+  }
+
+  .contact-terminal-screen {
+    padding: var(--space-sm);
+    font-size: 0.8rem;
+  }
+
+  .contact-ascii-box {
+    font-size: clamp(0.6rem, 2.6vw, 0.75rem);
+    line-height: 1.25;
+  }
+
+  .contact-terminal-actions {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .contact-action-btn {
+    font-size: 0.68rem;
+    padding: 3px 6px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-cursor {
+    animation: none !important;
+    opacity: 0.85;
+  }
+
+  .contact-action-btn,
+  .contact-link {
+    transition: none !important;
+  }
+}
