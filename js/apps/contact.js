@@ -10,15 +10,25 @@ window.VOS = window.VOS || {};
 VOS.apps = VOS.apps || {};
 
 /**
- * Clearly configurable contact details
+ * Clearly configurable contact details (synced with VOS.config)
  */
-const CONTACT_DATA = {
-  name: 'V Nava Vignesh',
-  email: 'navavigneshvemula79@gmail.com',
-  phone: '+91 9014509649',
-  location: 'Guntur, Andhra Pradesh, India',
-  github: 'https://github.com/navavignesh',
-  linkedin: 'https://linkedin.com/in/navavigneshvemula79'
+const getContactData = () => {
+  const personal = VOS.config?.personal || {};
+  const gh = VOS.getSocialLink('github');
+  const li = VOS.getSocialLink('linkedin');
+
+  return {
+    name: personal.name || 'V Nava Vignesh',
+    email: personal.email || 'navavigneshvemula79@gmail.com',
+    phone: personal.phone || '+91 9014509649',
+    location: personal.location || 'Guntur, Andhra Pradesh, India',
+    github: gh.url || 'https://github.com/Nava-Vignesh/',
+    githubDisplay: gh.display || 'github.com/Nava-Vignesh',
+    githubValid: gh.isConfigured,
+    linkedin: li.url || 'https://www.linkedin.com/in/navavigneshvemula/',
+    linkedinDisplay: li.display || 'linkedin.com/in/navavigneshvemula',
+    linkedinValid: li.isConfigured
+  };
 };
 
 VOS.apps['contact'] = {
@@ -41,9 +51,7 @@ VOS.apps['contact'] = {
   render(container) {
     if (!container) return;
 
-    // Extract display values (strip protocol for clean terminal display)
-    const githubDisplay = CONTACT_DATA.github.replace(/^https?:\/\//, '');
-    const linkedinDisplay = CONTACT_DATA.linkedin.replace(/^https?:\/\//, '');
+    const data = getContactData();
 
     container.innerHTML = `
       <div class="contact-terminal-container" role="region" aria-label="Terminal Contact Session">
@@ -73,22 +81,22 @@ VOS.apps['contact'] = {
 ├────────────────────────────────────────────────────────┤
 │                                                        │
 │  👤 Name                                               │
-│     ${CONTACT_DATA.name}                                        │
+│     ${data.name}                                        │
 │                                                        │
 │  📧 Email                                              │
-│     <button type="button" class="contact-link contact-link--email" id="contact-btn-email" aria-label="Copy email address ${CONTACT_DATA.email}" title="Click to copy">${CONTACT_DATA.email}</button> <span class="contact-copy-badge" id="contact-copy-badge" role="status" aria-hidden="true">Copied!</span>
+│     <button type="button" class="contact-link contact-link--email" id="contact-btn-email" aria-label="Copy email address ${data.email}" title="Click to copy">${data.email}</button> <span class="contact-copy-badge" id="contact-copy-badge" role="status" aria-hidden="true">Copied!</span>
 │                                                        │
 │  📱 Phone                                              │
-│     <a href="tel:+919014509649" class="contact-link" id="contact-btn-phone" aria-label="Call ${CONTACT_DATA.phone}">${CONTACT_DATA.phone}</a>                           │
+│     <a href="tel:${data.phone.replace(/[^+\d]/g, '')}" class="contact-link" id="contact-btn-phone" aria-label="Call ${data.phone}">${data.phone}</a>                           │
 │                                                        │
 │  📍 Location                                           │
-│     ${CONTACT_DATA.location}               │
+│     ${data.location}               │
 │                                                        │
 │  🐙 GitHub                                             │
-│     <a href="${CONTACT_DATA.github}" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--github" id="contact-btn-github" aria-label="Open GitHub profile in new tab">${githubDisplay}</a>                 │
+│     ${data.githubValid ? `<a href="${data.github}" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--github" id="contact-btn-github" aria-label="Open GitHub profile in new tab">${data.githubDisplay}</a>` : `<span class="contact-link contact-link--disabled" title="Not configured">${data.githubDisplay}</span>`}
 │                                                        │
 │  💼 LinkedIn                                           │
-│     <a href="${CONTACT_DATA.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--linkedin" id="contact-btn-linkedin" aria-label="Open LinkedIn profile in new tab">${linkedinDisplay}</a> │
+│     ${data.linkedinValid ? `<a href="${data.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--linkedin" id="contact-btn-linkedin" aria-label="Open LinkedIn profile in new tab">${data.linkedinDisplay}</a>` : `<span class="contact-link contact-link--disabled" title="Not configured">${data.linkedinDisplay}</span>`}
 │                                                        │
 └────────────────────────────────────────────────────────┘</pre>
           </div>
@@ -108,8 +116,8 @@ VOS.apps['contact'] = {
           <span class="contact-actions-label">// QUICK ACTIONS:</span>
           <button type="button" class="contact-action-btn" id="contact-action-copy">📋 copy email</button>
           <button type="button" class="contact-action-btn" id="contact-action-phone">📞 phone</button>
-          <button type="button" class="contact-action-btn" id="contact-action-github">↗ open github</button>
-          <button type="button" class="contact-action-btn" id="contact-action-linkedin">↗ open linkedin</button>
+          <button type="button" class="contact-action-btn" id="contact-action-github" ${!data.githubValid ? 'disabled' : ''}>↗ open github</button>
+          <button type="button" class="contact-action-btn" id="contact-action-linkedin" ${!data.linkedinValid ? 'disabled' : ''}>↗ open linkedin</button>
           <button type="button" class="contact-action-btn contact-action-btn--clear" id="contact-action-clear">↺ clear log</button>
         </footer>
       </div>
@@ -216,7 +224,7 @@ VOS.apps['contact'] = {
     const githubLink = container.querySelector('#contact-btn-github');
     if (githubLink) {
       const githubHandler = () => {
-        handleOpenLink(CONTACT_DATA.github, githubDisplay);
+        handleOpenLink(data.github, data.githubDisplay);
       };
       githubLink.addEventListener('click', githubHandler);
       this._listeners.push({ element: githubLink, type: 'click', handler: githubHandler });
@@ -225,7 +233,7 @@ VOS.apps['contact'] = {
     const linkedinLink = container.querySelector('#contact-btn-linkedin');
     if (linkedinLink) {
       const linkedinHandler = () => {
-        handleOpenLink(CONTACT_DATA.linkedin, linkedinDisplay);
+        handleOpenLink(data.linkedin, data.linkedinDisplay);
       };
       linkedinLink.addEventListener('click', linkedinHandler);
       this._listeners.push({ element: linkedinLink, type: 'click', handler: linkedinHandler });
@@ -234,7 +242,7 @@ VOS.apps['contact'] = {
     const phoneLink = container.querySelector('#contact-btn-phone');
     if (phoneLink) {
       const phoneHandler = () => {
-        appendLog(`call ${CONTACT_DATA.phone}`, `Initiating call to ${CONTACT_DATA.phone}`);
+        appendLog(`call ${data.phone}`, `Initiating call to ${data.phone}`);
       };
       phoneLink.addEventListener('click', phoneHandler);
       this._listeners.push({ element: phoneLink, type: 'click', handler: phoneHandler });
@@ -251,8 +259,8 @@ VOS.apps['contact'] = {
     const actionPhone = container.querySelector('#contact-action-phone');
     if (actionPhone) {
       const actionPhoneHandler = () => {
-        appendLog(`call ${CONTACT_DATA.phone}`, `Phone: ${CONTACT_DATA.phone}`);
-        window.location.href = `tel:${CONTACT_DATA.phone.replace(/[^+\d]/g, '')}`;
+        appendLog(`call ${data.phone}`, `Phone: ${data.phone}`);
+        window.location.href = `tel:${data.phone.replace(/[^+\d]/g, '')}`;
       };
       actionPhone.addEventListener('click', actionPhoneHandler);
       this._listeners.push({ element: actionPhone, type: 'click', handler: actionPhoneHandler });
@@ -261,8 +269,12 @@ VOS.apps['contact'] = {
     const actionGithub = container.querySelector('#contact-action-github');
     if (actionGithub) {
       const actionGithubHandler = () => {
-        handleOpenLink(CONTACT_DATA.github, githubDisplay);
-        window.open(CONTACT_DATA.github, '_blank', 'noopener,noreferrer');
+        if (!data.githubValid) {
+          appendLog('open github', 'GitHub profile not configured.', 'error');
+          return;
+        }
+        handleOpenLink(data.github, data.githubDisplay);
+        window.open(data.github, '_blank', 'noopener,noreferrer');
       };
       actionGithub.addEventListener('click', actionGithubHandler);
       this._listeners.push({ element: actionGithub, type: 'click', handler: actionGithubHandler });
@@ -271,10 +283,16 @@ VOS.apps['contact'] = {
     const actionLinkedin = container.querySelector('#contact-action-linkedin');
     if (actionLinkedin) {
       const actionLinkedinHandler = () => {
-        handleOpenLink(CONTACT_DATA.linkedin, linkedinDisplay);
-        window.open(CONTACT_DATA.linkedin, '_blank', 'noopener,noreferrer');
+        if (!data.linkedinValid) {
+          appendLog('open linkedin', 'LinkedIn profile not configured.', 'error');
+          return;
+        }
+        handleOpenLink(data.linkedin, data.linkedinDisplay);
+        window.open(data.linkedin, '_blank', 'noopener,noreferrer');
       };
       actionLinkedin.addEventListener('click', actionLinkedinHandler);
+      this._listeners.push({ element: actionLinkedin, type: 'click', handler: actionLinkedinHandler });
+    }
       this._listeners.push({ element: actionLinkedin, type: 'click', handler: actionLinkedinHandler });
     }
 

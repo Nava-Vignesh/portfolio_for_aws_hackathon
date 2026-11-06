@@ -173,6 +173,42 @@
   font-weight: 500;
 }
 
+.profile-social-actions {
+  width: 100%;
+  display: flex;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+.profile-social-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-hover);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.profile-social-btn:hover {
+  background-color: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: var(--bg-desktop);
+  transform: translateY(-1px);
+}
+
+.profile-social-btn svg {
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
    RIGHT CONTENT PANEL
    ========================================================================== */

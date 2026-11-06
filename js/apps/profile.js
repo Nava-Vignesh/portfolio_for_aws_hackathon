@@ -76,6 +76,27 @@ VOS.apps['profile'] = {
               <span>Focus: <strong class="profile-meta-val">AI, Cloud &amp; Python</strong></span>
             </div>
           </div>
+
+          <div class="profile-sidebar-divider" role="separator" aria-hidden="true"></div>
+
+          <div class="profile-social-actions" aria-label="Social Profiles">
+            <a href="${VOS.getSocialLink('github').url || '#'}" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="profile-social-btn profile-social-btn--github" 
+               aria-label="Open GitHub Profile (${VOS.getSocialLink('github').display})">
+              ${VOS.icons.github}
+              <span>GitHub</span>
+            </a>
+            <a href="${VOS.getSocialLink('linkedin').url || '#'}" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="profile-social-btn profile-social-btn--linkedin" 
+               aria-label="Open LinkedIn Profile (${VOS.getSocialLink('linkedin').display})">
+              ${VOS.icons.linkedin}
+              <span>LinkedIn</span>
+            </a>
+          </div>
         </aside>
 
         <!-- Right Main Panel: About, Education, and Facts -->

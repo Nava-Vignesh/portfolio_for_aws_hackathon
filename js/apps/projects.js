@@ -29,7 +29,7 @@ VOS.apps['projects'] = {
       status: 'Ideathon 1st Place',
       description: 'Conceived an anti-tamper media authentication system that embeds imperceptible mathematical signatures into generated images to verify provenance. Validated watermark resilience against manipulation using digital image processing concepts, delivering a functional proof-of-concept verification demo.',
       tech: ['Python', 'Digital Image Processing', 'Watermarking', 'OpenCV', 'NumPy', 'Streamlit'],
-      github: 'https://github.com/navavignesh/aethelmark',
+      github: 'https://github.com/Nava-Vignesh/Aethelmark',
       icon: '🔐'
     },
     {
@@ -41,7 +41,7 @@ VOS.apps['projects'] = {
       status: 'Completed',
       description: 'Developed a modular student record management system utilizing OOP principles and Pandas for structured institutional data handling. Built an interactive analytical dashboard deployed via Streamlit to monitor academic records and institutional metrics.',
       tech: ['Python', 'Pandas', 'Streamlit', 'OOP', 'Data Analytics'],
-      github: 'https://github.com/navavignesh/student-erp',
+      github: 'https://github.com/Nava-Vignesh/Institutional-Student-ERP',
       icon: '🏫'
     },
     {
@@ -53,7 +53,7 @@ VOS.apps['projects'] = {
       status: 'Completed',
       description: 'Programmed a terminal-based seat reservation system utilizing 2D arrays for seat mapping. Implemented runtime seat-state verification and input validation to prevent double-booking errors.',
       tech: ['C', '2D Arrays', 'State Management', 'Input Validation', 'Terminal CLI'],
-      github: 'https://github.com/navavignesh/cli-movie-ticket-booking',
+      github: 'https://github.com/Nava-Vignesh/CLI-Movie-Ticket-Booking',
       icon: '🎟️'
     }
   ],
@@ -226,7 +226,7 @@ VOS.apps['projects'] = {
             rel="noopener noreferrer" 
             class="projects-btn"
             aria-label="View source code for ${this._escapeHTML(project.title)} on GitHub">
-            <span aria-hidden="true">📦</span> View on GitHub
+            ${VOS.icons?.github || '<span aria-hidden="true">📦</span>'} View on GitHub
           </a>
           <button 
             type="button" 
