@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VIGNESH.OS — Interactive desktop-environment portfolio of Nava Vignesh">
+  <meta name="theme-color" content="#0a1628">
+  <title>VIGNESH.OS | Nava Vignesh</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a1628'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='20' fill='%23e8734a'%3EV%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/desktop.css">
+  <link rel="stylesheet" href="css/window.css">
+  <link rel="stylesheet" href="css/taskbar.css">
+
+  <!-- Application Styles -->
+  <link rel="stylesheet" href="css/apps/profile.css">
+  <link rel="stylesheet" href="css/apps/projects.css">
+  <link rel="stylesheet" href="css/apps/toolkit.css">
+  <link rel="stylesheet" href="css/apps/journey.css">
+  <link rel="stylesheet" href="css/apps/achievements.css">
+  <link rel="stylesheet" href="css/apps/contact.css">
+  <link rel="stylesheet" href="css/apps/superpower.css">
+</head>
+<body>
+  <!-- Boot Screen -->
+  <div id="boot-screen" class="boot-screen">
+    <div class="boot-screen__title">VIGNESH.OS</div>
+    <div class="boot-screen__subtitle">A Personal Digital Playground</div>
+    <div class="boot-screen__progress">
+      <div class="boot-screen__progress-bar" id="boot-progress-bar"></div>
+    </div>
+    <div class="boot-screen__status" id="boot-status">Initializing...</div>
+  </div>
+
+  <!-- Desktop -->
+  <div class="desktop" role="application" aria-label="Vignesh.OS Desktop">
+    <div class="desktop-icons" role="toolbar" aria-label="Desktop applications"></div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar" role="navigation" aria-label="System taskbar"></div>
+
+  <!-- Core Scripts -->
+  <script src="js/window-manager.js"></script>
+  <script src="js/desktop.js"></script>
+  <script src="js/taskbar.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="js/apps/profile.js"></script>
+  <script src="js/apps/projects.js"></script>
+  <script src="js/apps/toolkit.js"></script>
+  <script src="js/apps/journey.js"></script>
+  <script src="js/apps/achievements.js"></script>
+  <script src="js/apps/contact.js"></script>
+  <script src="js/apps/superpower.js"></script>
+
+  <!-- Main System Initialization -->
+  <script src="js/main.js"></script>
+</body>
+</html>

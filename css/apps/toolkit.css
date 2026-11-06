@@ -1,0 +1,240 @@
+/* ==========================================================================
+   VIGNESH.OS — TECH TOOLKIT STYLES (.toolkit-*)
+   ========================================================================== */
+
+.toolkit-window-body {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.toolkit-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bg-window);
+  color: var(--text-primary);
+  font-family: var(--font-system);
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   TAB NAVIGATION BAR
+   ========================================================================== */
+
+.toolkit-tabs-wrapper {
+  background-color: var(--bg-window-alt);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 var(--space-md);
+  flex-shrink: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.toolkit-tabs-wrapper::-webkit-scrollbar {
+  height: 4px;
+}
+
+.toolkit-tabs-wrapper::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.toolkit-tabs {
+  display: flex;
+  gap: var(--space-md);
+  min-width: max-content;
+  margin: 0;
+  padding: 0;
+}
+
+.toolkit-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-system);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 14px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  position: relative;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.toolkit-tab:hover {
+  color: var(--text-primary);
+}
+
+.toolkit-tab.toolkit-active {
+  color: var(--accent-orange);
+  border-bottom-color: var(--accent-orange);
+}
+
+.toolkit-tab:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: -2px;
+}
+
+.toolkit-tab-icon {
+  font-size: 1rem;
+}
+
+.toolkit-tab-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--bg-hover);
+  color: var(--text-dim);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.toolkit-tab.toolkit-active .toolkit-tab-badge {
+  background: rgba(232, 115, 74, 0.2);
+  color: var(--accent-orange);
+}
+
+/* ==========================================================================
+   TAB PANELS & CONTENT
+   ========================================================================== */
+
+.toolkit-content {
+  flex: 1;
+  padding: var(--space-lg);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.toolkit-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toolkit-content::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+.toolkit-panel {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-md);
+  animation: toolkitFadeIn var(--transition-normal);
+}
+
+.toolkit-panel.toolkit-active {
+  display: flex;
+}
+
+@keyframes toolkitFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toolkit-panel-intro {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  background: var(--bg-window-alt);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+}
+
+/* Chips Grid */
+.toolkit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+.toolkit-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 12px 16px;
+  background-color: var(--bg-window-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.toolkit-chip:hover {
+  background-color: var(--bg-hover);
+  border-color: rgba(232, 115, 74, 0.4);
+  transform: translateY(-2px);
+}
+
+.toolkit-chip-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.toolkit-chip-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.toolkit-chip-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toolkit-chip-category {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .toolkit-content {
+    padding: var(--space-md);
+  }
+
+  .toolkit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolkit-tab {
+    padding: 12px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .toolkit-panel {
+    animation: none !important;
+  }
+  .toolkit-chip,
+  .toolkit-tab {
+    transition: none !important;
+    transform: none !important;
+  }
+}

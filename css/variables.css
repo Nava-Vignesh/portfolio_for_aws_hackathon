@@ -1,0 +1,62 @@
+:root {
+  /* Colours */
+  --bg-desktop: #0a1628;
+  --bg-window: #111d33;
+  --bg-window-alt: #0e1a2e;
+  --bg-titlebar: #0d1829;
+  --bg-taskbar: #080e1cee;
+  --bg-hover: #162240;
+  --bg-active: #1a2a4a;
+  --text-primary: #f5f0e8;
+  --text-secondary: #a09882;
+  --text-dim: #6b7280;
+  --accent-orange: #e8734a;
+  --accent-orange-dim: #c4593a;
+  --accent-green: #6b9e78;
+  --accent-green-dim: #4a7a56;
+  --accent-blue: #4a8fe8;
+  --border-subtle: #1c2d47;
+  --border-window: #243554;
+  --border-focus: #e8734a55;
+  --shadow-window: 0 8px 32px rgba(0,0,0,0.5);
+  --shadow-window-focus: 0 8px 32px rgba(232,115,74,0.15);
+
+  /* Typography */
+  --font-system: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+  --font-pixel: 'Press Start 2P', monospace;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* Z-index layers */
+  --z-desktop: 1;
+  --z-window-base: 100;
+  --z-taskbar: 10000;
+  --z-launcher: 10001;
+  --z-overlay: 10002;
+  --z-boot: 10003;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-slow: 0ms;
+  }
+}
