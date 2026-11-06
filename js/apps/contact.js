@@ -293,8 +293,6 @@ VOS.apps['contact'] = {
       actionLinkedin.addEventListener('click', actionLinkedinHandler);
       this._listeners.push({ element: actionLinkedin, type: 'click', handler: actionLinkedinHandler });
     }
-      this._listeners.push({ element: actionLinkedin, type: 'click', handler: actionLinkedinHandler });
-    }
 
     const actionClear = container.querySelector('#contact-action-clear');
     if (actionClear) {

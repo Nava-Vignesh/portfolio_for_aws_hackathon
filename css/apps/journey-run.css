@@ -1,0 +1,463 @@
+/* ==========================================================================
+   VIGNESH.OS — JOURNEY.RUN STYLES (.journey-run-*)
+   ========================================================================== */
+
+.journey-run-window-body {
+  padding: 0 !important;
+  overflow: hidden !important;
+  background-color: #080d1a !important;
+}
+
+.journey-run-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background: radial-gradient(circle at 50% 10%, #111a33 0%, #070c18 100%);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   TOP HUD BAR
+   -------------------------------------------------------------------------- */
+
+.journey-run-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background-color: rgba(10, 18, 36, 0.85);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.journey-run-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.journey-run-badge {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--accent-orange);
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.journey-run-tagline {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  display: inline-block;
+}
+
+@media (max-width: 680px) {
+  .journey-run-tagline {
+    display: none;
+  }
+}
+
+.journey-run-stage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(232, 115, 74, 0.15);
+  border: 1px solid var(--accent-orange);
+  color: var(--accent-orange);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+}
+
+.journey-run-scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.journey-run-hi-score {
+  color: var(--text-dim);
+}
+
+.journey-run-current-score {
+  color: #f0f6fc;
+}
+
+.journey-run-btn-icon {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all var(--transition-fast);
+}
+
+.journey-run-btn-icon:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-orange);
+}
+
+/* --------------------------------------------------------------------------
+   CANVAS STAGE AREA
+   -------------------------------------------------------------------------- */
+
+.journey-run-stage-wrapper {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #060913;
+}
+
+.journey-run-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   MILESTONE TOAST / NOTIFICATION (IN-GAME)
+   -------------------------------------------------------------------------- */
+
+.journey-run-milestone-toast {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(14, 23, 44, 0.95);
+  border: 1px solid var(--accent-orange);
+  border-radius: var(--radius-md);
+  padding: 8px 18px;
+  box-shadow: 0 4px 20px rgba(232, 115, 74, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 20;
+}
+
+.journey-run-milestone-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.journey-run-toast-icon {
+  font-size: 1.25rem;
+}
+
+.journey-run-toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.journey-run-toast-title {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--accent-orange);
+  letter-spacing: 0.5px;
+}
+
+.journey-run-toast-desc {
+  font-size: 11px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* --------------------------------------------------------------------------
+   IDEATHON WINNING ACHIEVEMENT MODAL (STAGE 3 POPUP)
+   -------------------------------------------------------------------------- */
+
+.journey-run-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 8, 18, 0.88);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  padding: var(--space-md);
+  box-sizing: border-box;
+  animation: journeyRunFadeIn 0.3s ease-out;
+}
+
+@keyframes journeyRunFadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.journey-run-modal-card {
+  max-width: 540px;
+  width: 100%;
+  background: #0d172c;
+  border: 2px solid var(--accent-orange);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(232, 115, 74, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-height: 92%;
+  overflow-y: auto;
+}
+
+.journey-run-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+}
+
+.journey-run-modal-badge {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--accent-orange);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.journey-run-modal-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f0f6fc;
+  font-family: var(--font-system);
+  margin: 0;
+}
+
+.journey-run-modal-photo-wrap {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: #000;
+  max-height: 220px;
+}
+
+.journey-run-modal-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.journey-run-modal-desc {
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.journey-run-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: 4px;
+}
+
+.journey-run-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent-orange);
+  color: #060913;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 18px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.journey-run-btn-primary:hover {
+  background: #ff8559;
+  transform: translateY(-1px);
+}
+
+.journey-run-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.journey-run-btn-secondary:hover {
+  background: var(--bg-active);
+  border-color: var(--accent-blue);
+}
+
+/* --------------------------------------------------------------------------
+   GAME OVER SCREEN OVERLAY
+   -------------------------------------------------------------------------- */
+
+.journey-run-gameover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 9, 20, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 25;
+  padding: var(--space-md);
+  text-align: center;
+  animation: journeyRunFadeIn 0.25s ease-out;
+}
+
+.journey-run-gameover-title {
+  font-family: var(--font-pixel);
+  font-size: 22px;
+  color: var(--accent-orange);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.journey-run-gameover-subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.journey-run-gameover-stats {
+  display: flex;
+  gap: 20px;
+  background: rgba(16, 27, 50, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 10px 24px;
+  margin-bottom: 18px;
+}
+
+.journey-run-stat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.journey-run-stat-label {
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.journey-run-stat-value {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: #fff;
+}
+
+.journey-run-gameover-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   MOBILE ON-SCREEN TOUCH CONTROLS
+   -------------------------------------------------------------------------- */
+
+.journey-run-touch-controls {
+  display: none;
+  padding: 8px 16px;
+  background: rgba(10, 18, 36, 0.95);
+  border-top: 1px solid var(--border-subtle);
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .journey-run-touch-controls {
+    display: flex;
+  }
+}
+
+.journey-run-touch-btn {
+  flex: 1;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(28, 45, 71, 0.6);
+  border: 1px solid var(--border-subtle);
+  color: #f0f6fc;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.1s ease;
+}
+
+.journey-run-touch-btn:active,
+.journey-run-touch-btn.active {
+  background: var(--accent-orange);
+  color: #060913;
+  transform: scale(0.96);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .journey-run-milestone-toast,
+  .journey-run-modal-backdrop,
+  .journey-run-btn-primary {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+

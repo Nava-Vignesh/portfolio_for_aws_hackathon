@@ -62,7 +62,7 @@ VOS.Taskbar = class Taskbar {
       { id: 'journey', icon: '🗺️', label: 'MY JOURNEY' },
       { id: 'achievements', icon: '🏆', label: 'ACHIEVEMENTS' },
       { id: 'contact', icon: '✉️', label: 'CONTACT' },
-      { id: 'superpower', icon: '⚡', label: 'SUPERPOWER.EXE' }
+      { id: 'journey-run', icon: '🦖', label: 'JOURNEY.RUN' }
     ];
 
     apps.forEach(app => {
