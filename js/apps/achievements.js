@@ -183,6 +183,22 @@ VOS.apps['achievements'] = {
                   ${this._escapeHTML(comp.description)}
                 </p>
 
+                <!-- Ideathon Winning Photograph -->
+                <div class="achievements-photo-wrapper">
+                  <div class="achievements-photo-card">
+                    <img 
+                      src="assets/images/ideathon-winning.jpg" 
+                      alt="1st Place Award Ceremony — University Ideathon 2026, VVIT"
+                      class="achievements-winning-img"
+                      loading="lazy"
+                    />
+                    <div class="achievements-photo-caption">
+                      <span class="achievements-photo-caption-icon" aria-hidden="true">🏆</span>
+                      <span>1st Place Award Ceremony — VVIT University Ideathon (Jan 2026)</span>
+                    </div>
+                  </div>
+                </div>
+
                 <!-- Key Highlights -->
                 <div class="achievements-highlights-box">
                   <span class="achievements-highlights-label">// HIGHLIGHTS:</span>
