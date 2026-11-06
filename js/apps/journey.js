@@ -23,7 +23,7 @@ VOS.apps['journey'] = {
     {
       id: '2026-aws',
       period: '2026 – Present',
-      title: 'AWS Student Builder Cloud Leader',
+      title: 'AWS Student Builder Campus Leader',
       description: 'Spearheading campus study groups and practical sessions on cloud computing fundamentals within the AWS Student Community, guiding peers through AWS services, core architectures, and deployment workflows.',
       expanded: true
     },
@@ -96,9 +96,9 @@ VOS.apps['journey'] = {
         <div class="journey-timeline-wrapper">
           <ol class="journey-timeline">
             ${this.timelineData.map((item, idx) => {
-              const sideClass = idx % 2 === 0 ? 'journey-left' : 'journey-right';
-              const expandedClass = item.expanded ? 'journey-expanded' : '';
-              return `
+      const sideClass = idx % 2 === 0 ? 'journey-left' : 'journey-right';
+      const expandedClass = item.expanded ? 'journey-expanded' : '';
+      return `
                 <li class="journey-item ${sideClass} ${expandedClass}" id="journey-item-${item.id}">
                   <!-- Circular clickable node -->
                   <button 
@@ -137,7 +137,7 @@ VOS.apps['journey'] = {
                   </div>
                 </li>
               `;
-            }).join('')}
+    }).join('')}
           </ol>
         </div>
       </div>
