@@ -279,7 +279,7 @@
 
 /* Tech Stack Tags */
 .projects-tech-section {
-  margin-bottom: var(--space-lg);
+  margin-bottom: 0;
 }
 
 .projects-tech-tags {
@@ -304,55 +304,6 @@
 .projects-tech-tag:hover {
   background-color: var(--bg-active);
   border-color: var(--accent-blue);
-}
-
-/* Action Links */
-.projects-actions {
-  display: flex;
-  gap: var(--space-md);
-  align-items: center;
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--border-subtle);
-  flex-wrap: wrap;
-}
-
-.projects-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: 8px 16px;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-mono);
-  font-size: 0.84rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  background-color: var(--accent-orange);
-  color: var(--bg-desktop);
-  border: 1px solid transparent;
-  transition: background-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.projects-btn:hover {
-  background-color: #f0835c;
-  transform: translateY(-1px);
-}
-
-.projects-btn:focus-visible {
-  outline: 2px solid var(--accent-orange);
-  outline-offset: 2px;
-}
-
-.projects-btn-secondary {
-  background-color: transparent;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-primary);
-}
-
-.projects-btn-secondary:hover {
-  background-color: var(--bg-hover);
-  border-color: var(--accent-orange);
-  color: var(--accent-orange);
 }
 
 /* ==========================================================================

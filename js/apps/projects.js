@@ -218,23 +218,6 @@ VOS.apps['projects'] = {
             ${project.tech.map(t => `<span class="projects-tech-tag" role="listitem">${this._escapeHTML(t)}</span>`).join('')}
           </div>
         </section>
-
-        <footer class="projects-actions">
-          <a 
-            href="${project.github}" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="projects-btn"
-            aria-label="View source code for ${this._escapeHTML(project.title)} on GitHub">
-            ${VOS.icons?.github || '<span aria-hidden="true">📦</span>'} View on GitHub
-          </a>
-          <button 
-            type="button" 
-            class="projects-btn projects-btn-secondary"
-            onclick="alert('Project documentation and README preview coming soon!')">
-            <span aria-hidden="true">📄</span> Documentation
-          </button>
-        </footer>
       </article>
     `;
   },

@@ -13,7 +13,6 @@ VOS.config = {
     name: 'V Nava Vignesh',
     headline: 'Computer Science Undergrad | AI & Cloud Enthusiast',
     email: 'navavigneshvemula79@gmail.com',
-    phone: '+91 9014509649',
     location: 'Guntur, Andhra Pradesh, India',
     institution: 'VVIT University, Guntur',
     degree: 'B.Tech in CSE (Artificial Intelligence)',

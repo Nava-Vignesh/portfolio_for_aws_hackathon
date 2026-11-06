@@ -198,8 +198,8 @@ VOS.Desktop = class Desktop {
     const widget = document.createElement('div');
     widget.className = 'status-widget';
     widget.innerHTML = `
-      <div class="status-widget__avatar" id="avatar-container">
-        <img src="assets/images/profile.jpg" alt="Vignesh" onerror="this.parentElement.innerHTML='NV'; this.remove();">
+      <div class="status-widget__avatar" id="avatar-container" aria-hidden="true">
+        <span class="status-widget__monogram">NV</span>
       </div>
       <div class="status-widget__info">
         <span class="status-widget__name">V Nava Vignesh</span>

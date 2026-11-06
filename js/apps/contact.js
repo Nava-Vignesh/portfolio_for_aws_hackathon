@@ -3,14 +3,14 @@
 /**
  * VIGNESH.OS — Contact Application Module
  * 
- * Interactive retro terminal command prompt displaying contact information,
- * clickable external links, clipboard copying, and live command logging.
+ * Interactive retro terminal command session displaying validated contact
+ * channels, one-click copying, clickable social links, and live terminal logging.
  */
 window.VOS = window.VOS || {};
 VOS.apps = VOS.apps || {};
 
 /**
- * Clearly configurable contact details (synced with VOS.config)
+ * Configurable contact details synchronized with VOS.config
  */
 const getContactData = () => {
   const personal = VOS.config?.personal || {};
@@ -19,8 +19,8 @@ const getContactData = () => {
 
   return {
     name: personal.name || 'V Nava Vignesh',
+    headline: personal.headline || 'Computer Science Undergrad | AI & Cloud Enthusiast',
     email: personal.email || 'navavigneshvemula79@gmail.com',
-    phone: personal.phone || '+91 9014509649',
     location: personal.location || 'Guntur, Andhra Pradesh, India',
     github: gh.url || 'https://github.com/Nava-Vignesh/',
     githubDisplay: gh.display || 'github.com/Nava-Vignesh',
@@ -73,32 +73,84 @@ VOS.apps['contact'] = {
             <span class="contact-prompt">vignesh@os:~$</span> <span class="contact-command">cat contact.info</span>
           </div>
 
-          <!-- ASCII Contact Box -->
-          <div class="contact-ascii-wrapper">
-            <pre class="contact-ascii-box" aria-label="Contact Information Box">
-┌────────────────────────────────────────────────────────┐
-│  CONTACT INFORMATION                                   │
-├────────────────────────────────────────────────────────┤
-│                                                        │
-│  👤 Name                                               │
-│     ${data.name}                                        │
-│                                                        │
-│  📧 Email                                              │
-│     <button type="button" class="contact-link contact-link--email" id="contact-btn-email" aria-label="Copy email address ${data.email}" title="Click to copy">${data.email}</button> <span class="contact-copy-badge" id="contact-copy-badge" role="status" aria-hidden="true">Copied!</span>
-│                                                        │
-│  📱 Phone                                              │
-│     <a href="tel:${data.phone.replace(/[^+\d]/g, '')}" class="contact-link" id="contact-btn-phone" aria-label="Call ${data.phone}">${data.phone}</a>                           │
-│                                                        │
-│  📍 Location                                           │
-│     ${data.location}               │
-│                                                        │
-│  🐙 GitHub                                             │
-│     ${data.githubValid ? `<a href="${data.github}" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--github" id="contact-btn-github" aria-label="Open GitHub profile in new tab">${data.githubDisplay}</a>` : `<span class="contact-link contact-link--disabled" title="Not configured">${data.githubDisplay}</span>`}
-│                                                        │
-│  💼 LinkedIn                                           │
-│     ${data.linkedinValid ? `<a href="${data.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-link contact-link--linkedin" id="contact-btn-linkedin" aria-label="Open LinkedIn profile in new tab">${data.linkedinDisplay}</a>` : `<span class="contact-link contact-link--disabled" title="Not configured">${data.linkedinDisplay}</span>`}
-│                                                        │
-└────────────────────────────────────────────────────────┘</pre>
+          <!-- Structured Contact Directory Card -->
+          <div class="contact-card">
+            <div class="contact-card__header">
+              <span class="contact-card__prompt-badge">// USER PROFILE DIRECTORY</span>
+              <span class="contact-card__status">● ACTIVE</span>
+            </div>
+
+            <div class="contact-card__grid">
+              <!-- Name & Headline -->
+              <div class="contact-card__row">
+                <div class="contact-card__label-wrap">
+                  <span class="contact-card__icon" aria-hidden="true">👤</span>
+                  <span class="contact-card__label">NAME</span>
+                </div>
+                <div class="contact-card__val-wrap">
+                  <span class="contact-card__val-strong">${this._escapeHTML(data.name)}</span>
+                  <span class="contact-card__sub">${this._escapeHTML(data.headline)}</span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="contact-card__row">
+                <div class="contact-card__label-wrap">
+                  <span class="contact-card__icon" aria-hidden="true">✉️</span>
+                  <span class="contact-card__label">EMAIL</span>
+                </div>
+                <div class="contact-card__val-wrap contact-card__val-wrap--action">
+                  <a href="mailto:${this._escapeHTML(data.email)}" class="contact-card__link" id="contact-link-email">${this._escapeHTML(data.email)}</a>
+                  <button type="button" class="contact-mini-btn" id="contact-btn-email" title="Copy email address" aria-label="Copy email address">
+                    📋 Copy
+                  </button>
+                  <span class="contact-copy-badge" id="contact-copy-badge" role="status" aria-hidden="true">Copied!</span>
+                </div>
+              </div>
+
+              <!-- GitHub Profile -->
+              <div class="contact-card__row">
+                <div class="contact-card__label-wrap">
+                  <span class="contact-card__icon" aria-hidden="true">${VOS.icons?.github || '🐙'}</span>
+                  <span class="contact-card__label">GITHUB</span>
+                </div>
+                <div class="contact-card__val-wrap contact-card__val-wrap--action">
+                  <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="contact-card__link" id="contact-btn-github" aria-label="Open GitHub in new tab">
+                    ${this._escapeHTML(data.githubDisplay)}
+                  </a>
+                  <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="contact-mini-btn" aria-label="Visit GitHub Profile">
+                    Visit ↗
+                  </a>
+                </div>
+              </div>
+
+              <!-- LinkedIn Profile -->
+              <div class="contact-card__row">
+                <div class="contact-card__label-wrap">
+                  <span class="contact-card__icon" aria-hidden="true">${VOS.icons?.linkedin || '💼'}</span>
+                  <span class="contact-card__label">LINKEDIN</span>
+                </div>
+                <div class="contact-card__val-wrap contact-card__val-wrap--action">
+                  <a href="${data.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-card__link" id="contact-btn-linkedin" aria-label="Open LinkedIn in new tab">
+                    ${this._escapeHTML(data.linkedinDisplay)}
+                  </a>
+                  <a href="${data.linkedin}" target="_blank" rel="noopener noreferrer" class="contact-mini-btn" aria-label="Visit LinkedIn Profile">
+                    Connect ↗
+                  </a>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="contact-card__row">
+                <div class="contact-card__label-wrap">
+                  <span class="contact-card__icon" aria-hidden="true">📍</span>
+                  <span class="contact-card__label">LOCATION</span>
+                </div>
+                <div class="contact-card__val-wrap">
+                  <span class="contact-card__val">${this._escapeHTML(data.location)}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- Dynamic Command Log History -->
@@ -113,9 +165,8 @@ VOS.apps['contact'] = {
 
         <!-- Terminal Quick Action Bar -->
         <footer class="contact-terminal-actions" aria-label="Quick terminal commands">
-          <span class="contact-actions-label">// QUICK ACTIONS:</span>
+          <span class="contact-actions-label">// ACTIONS:</span>
           <button type="button" class="contact-action-btn" id="contact-action-copy">📋 copy email</button>
-          <button type="button" class="contact-action-btn" id="contact-action-phone">📞 phone</button>
           <button type="button" class="contact-action-btn" id="contact-action-github" ${!data.githubValid ? 'disabled' : ''}>↗ open github</button>
           <button type="button" class="contact-action-btn" id="contact-action-linkedin" ${!data.linkedinValid ? 'disabled' : ''}>↗ open linkedin</button>
           <button type="button" class="contact-action-btn contact-action-btn--clear" id="contact-action-clear">↺ clear log</button>
@@ -135,9 +186,6 @@ VOS.apps['contact'] = {
 
     /**
      * Append a simulated terminal command and result output
-     * @param {string} command - Command string
-     * @param {string} output - Feedback response string
-     * @param {string} [type='success'] - 'success' | 'info' | 'error'
      */
     const appendLog = (command, output, type = 'success') => {
       if (!logEl) return;
@@ -157,10 +205,10 @@ VOS.apps['contact'] = {
     };
 
     /**
-     * Copy email address with fallback and user feedback
+     * Copy email address with feedback
      */
     const handleCopyEmail = () => {
-      const email = CONTACT_DATA.email;
+      const email = data.email;
       const onSuccess = () => {
         if (copyBadge) {
           copyBadge.classList.add('contact-copy-badge--visible');
@@ -173,7 +221,6 @@ VOS.apps['contact'] = {
       };
 
       const onError = () => {
-        // Fallback for older browsers or permission denials
         try {
           const textarea = document.createElement('textarea');
           textarea.value = email;
@@ -188,10 +235,8 @@ VOS.apps['contact'] = {
             onSuccess();
             return;
           }
-        } catch (err) {
-          // ignore
-        }
-        appendLog(`copy ${email}`, `Failed to write to clipboard. Use: ${email}`, 'error');
+        } catch (err) {}
+        appendLog(`copy ${email}`, `Use: ${email}`, 'error');
       };
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -201,13 +246,8 @@ VOS.apps['contact'] = {
       }
     };
 
-    /**
-     * Handle link clicks for external profiles
-     * @param {string} url - Target URL
-     * @param {string} label - Display label
-     */
     const handleOpenLink = (url, label) => {
-      appendLog(`open ${label}`, 'Opening in new tab...');
+      appendLog(`open ${label}`, 'Opening profile in new tab...');
     };
 
     // Bind event listeners
@@ -239,31 +279,12 @@ VOS.apps['contact'] = {
       this._listeners.push({ element: linkedinLink, type: 'click', handler: linkedinHandler });
     }
 
-    const phoneLink = container.querySelector('#contact-btn-phone');
-    if (phoneLink) {
-      const phoneHandler = () => {
-        appendLog(`call ${data.phone}`, `Initiating call to ${data.phone}`);
-      };
-      phoneLink.addEventListener('click', phoneHandler);
-      this._listeners.push({ element: phoneLink, type: 'click', handler: phoneHandler });
-    }
-
-    // Bind quick action footer buttons
+    // Quick action footer buttons
     const actionCopy = container.querySelector('#contact-action-copy');
     if (actionCopy) {
       const actionCopyHandler = () => handleCopyEmail();
       actionCopy.addEventListener('click', actionCopyHandler);
       this._listeners.push({ element: actionCopy, type: 'click', handler: actionCopyHandler });
-    }
-
-    const actionPhone = container.querySelector('#contact-action-phone');
-    if (actionPhone) {
-      const actionPhoneHandler = () => {
-        appendLog(`call ${data.phone}`, `Phone: ${data.phone}`);
-        window.location.href = `tel:${data.phone.replace(/[^+\d]/g, '')}`;
-      };
-      actionPhone.addEventListener('click', actionPhoneHandler);
-      this._listeners.push({ element: actionPhone, type: 'click', handler: actionPhoneHandler });
     }
 
     const actionGithub = container.querySelector('#contact-action-github');
@@ -309,8 +330,6 @@ VOS.apps['contact'] = {
 
   /**
    * Helper to escape HTML characters
-   * @param {string} str - Raw string
-   * @returns {string} Sanitized string
    */
   _escapeHTML(str) {
     if (!str) return '';

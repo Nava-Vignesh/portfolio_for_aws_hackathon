@@ -21,10 +21,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 12px;
+  padding: 8px 14px;
   background-color: var(--bg-window-alt);
   border-bottom: 1px solid var(--border-subtle);
   user-select: none;
+  flex-shrink: 0;
 }
 
 .contact-terminal-controls {
@@ -41,17 +42,9 @@
   opacity: 0.8;
 }
 
-.contact-term-btn--red {
-  background-color: #e05555;
-}
-
-.contact-term-btn--yellow {
-  background-color: #e5b342;
-}
-
-.contact-term-btn--green {
-  background-color: var(--accent-green);
-}
+.contact-term-btn--red { background-color: #e05555; }
+.contact-term-btn--yellow { background-color: #e5b342; }
+.contact-term-btn--green { background-color: var(--accent-green); }
 
 .contact-terminal-title {
   font-size: 0.78rem;
@@ -65,14 +58,14 @@
 }
 
 /* ==========================================================================
-   TERMINAL SCREEN & ASCII DISPLAY
+   TERMINAL SCREEN & DIRECTORY CARD
    ========================================================================== */
 
 .contact-terminal-screen {
   flex: 1;
   padding: var(--space-md);
   overflow-y: auto;
-  overflow-x: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -81,10 +74,8 @@
   line-height: 1.5;
 }
 
-/* Terminal custom scrollbar */
 .contact-terminal-screen::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
 }
 
 .contact-terminal-screen::-webkit-scrollbar-track {
@@ -117,49 +108,157 @@
   color: var(--text-primary);
 }
 
-/* ASCII Box Styling */
-.contact-ascii-wrapper {
-  margin: var(--space-xs) 0;
-  max-width: 100%;
-  overflow-x: auto;
+/* ==========================================================================
+   STRUCTURED TERMINAL CONTACT DIRECTORY CARD
+   ========================================================================== */
+
+.contact-card {
+  margin: var(--space-xs) 0 var(--space-sm) 0;
+  background: rgba(13, 23, 44, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
-.contact-ascii-box {
-  margin: 0;
-  padding: 0;
+.contact-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: rgba(18, 32, 60, 0.7);
+  border-bottom: 1px solid var(--border-subtle);
   font-family: var(--font-mono);
-  font-size: clamp(0.72rem, 1.6vw, 0.88rem);
-  line-height: 1.35;
-  color: var(--text-secondary);
-  background: transparent;
-  white-space: pre;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
 }
 
-/* Links inside ASCII box */
-.contact-link {
+.contact-card__prompt-badge {
   color: var(--accent-orange);
+  font-weight: 700;
+}
+
+.contact-card__status {
+  color: var(--accent-green);
+  font-size: 0.68rem;
+}
+
+.contact-card__grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-card__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(28, 45, 71, 0.6);
+  gap: var(--space-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.contact-card__row:last-child {
+  border-bottom: none;
+}
+
+.contact-card__row:hover {
+  background-color: rgba(28, 45, 71, 0.35);
+}
+
+.contact-card__label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.contact-card__icon {
+  width: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--accent-orange);
+}
+
+.contact-card__icon svg {
+  display: block;
+}
+
+.contact-card__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.6px;
+}
+
+.contact-card__val-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  text-align: right;
+  min-width: 0;
+}
+
+.contact-card__val-strong {
+  font-family: var(--font-system);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #f0f6fc;
+}
+
+.contact-card__sub {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+.contact-card__val {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.contact-card__link {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: var(--accent-blue);
+  text-decoration: none;
+  word-break: break-all;
+  transition: color var(--transition-fast);
+}
+
+.contact-card__link:hover {
+  color: #74b9ff;
   text-decoration: underline;
-  text-underline-offset: 3px;
-  background: transparent;
-  border: none;
-  padding: 0 2px;
-  font-family: inherit;
-  font-size: inherit;
+}
+
+.contact-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  text-decoration: none;
   cursor: pointer;
-  transition: color var(--transition-fast), background-color var(--transition-fast);
-  display: inline;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 
-.contact-link:hover {
-  color: #ff916b;
-  background-color: rgba(232, 115, 74, 0.15);
-  border-radius: 2px;
-}
-
-.contact-link:focus-visible {
-  outline: 2px solid var(--accent-orange);
-  outline-offset: 2px;
-  border-radius: 2px;
+.contact-mini-btn:hover {
+  background: var(--accent-orange);
+  color: var(--bg-desktop);
+  border-color: var(--accent-orange);
 }
 
 /* Copied feedback badge */
@@ -173,9 +272,8 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 700;
-  padding: 1px 6px;
+  padding: 2px 7px;
   border-radius: var(--radius-sm);
-  margin-left: 6px;
   transition: opacity var(--transition-fast), visibility var(--transition-fast);
 }
 
@@ -192,6 +290,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  margin-top: 4px;
 }
 
 .contact-log-entry {
@@ -202,20 +301,12 @@
 
 .contact-output {
   margin-left: 14px;
-  font-size: 0.84rem;
+  font-size: 0.82rem;
 }
 
-.contact-output--success {
-  color: var(--accent-green);
-}
-
-.contact-output--info {
-  color: var(--accent-blue);
-}
-
-.contact-output--error {
-  color: #e05555;
-}
+.contact-output--success { color: var(--accent-green); }
+.contact-output--info { color: var(--accent-blue); }
+.contact-output--error { color: #e05555; }
 
 .contact-active-prompt-row {
   display: flex;
@@ -233,9 +324,7 @@
 }
 
 @keyframes contact-blink {
-  to {
-    visibility: hidden;
-  }
+  to { visibility: hidden; }
 }
 
 /* ==========================================================================
@@ -246,10 +335,11 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 8px 14px;
   background-color: var(--bg-window-alt);
   border-top: 1px solid var(--border-subtle);
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .contact-actions-label {
@@ -264,11 +354,9 @@
   color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  padding: 4px 8px;
+  padding: 4px 10px;
   cursor: pointer;
-  transition: background-color var(--transition-fast), 
-              color var(--transition-fast), 
-              border-color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .contact-action-btn:hover {
@@ -293,22 +381,25 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE STYLES
+   RESPONSIVE DESIGN
    ========================================================================== */
 
-@media (max-width: 767px) {
-  .contact-terminal-header {
-    padding: 6px 10px;
+@media (max-width: 640px) {
+  .contact-card__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 12px;
   }
 
-  .contact-terminal-screen {
-    padding: var(--space-sm);
-    font-size: 0.8rem;
+  .contact-card__label-wrap {
+    min-width: 0;
   }
 
-  .contact-ascii-box {
-    font-size: clamp(0.6rem, 2.6vw, 0.75rem);
-    line-height: 1.25;
+  .contact-card__val-wrap {
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
   }
 
   .contact-terminal-actions {
@@ -322,18 +413,15 @@
   }
 }
 
-/* ==========================================================================
-   ACCESSIBILITY: PREFERS REDUCED MOTION
-   ========================================================================== */
-
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .contact-cursor {
     animation: none !important;
     opacity: 0.85;
   }
-
   .contact-action-btn,
-  .contact-link {
+  .contact-mini-btn,
+  .contact-card__link {
     transition: none !important;
   }
 }

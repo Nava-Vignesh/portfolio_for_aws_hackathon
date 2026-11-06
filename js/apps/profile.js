@@ -13,8 +13,8 @@ VOS.apps['profile'] = {
   id: 'profile',
   title: 'MY PROFILE',
   icon: '👤',
-  defaultWidth: 800,
-  defaultHeight: 550,
+  defaultWidth: 840,
+  defaultHeight: 580,
 
   /**
    * Reference to active listeners for proper cleanup
